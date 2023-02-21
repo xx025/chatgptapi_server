@@ -2,9 +2,9 @@
 
 将网页版ChatGPT做成API，
 
-**真实模型，不限字数，支持记忆，无限查询量**
 
 
+**真逆向ChatAPI**： [acheong08/ChatGPT](https://github.com/acheong08/ChatGPT)
 
 **推荐魔法网络**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u.html)
 
