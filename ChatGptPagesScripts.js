@@ -11,10 +11,6 @@
 // ==/UserScript==
 
 
-//这是一个websocket断开自动重连的库,使用字节跳动的CDN
-// https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/reconnecting-websocket/1.0.0/reconnecting-websocket.js
-// https://github.com/joewalnes/reconnecting-websocket
-
 (function () {
     'use strict';
 
@@ -31,10 +27,13 @@
 
 
     var ws = new ReconnectingWebSocket(server_url);
-    let input_eara = document.querySelector('textarea')
-    // 文本框
-    let btn = input_eara.nextSibling
-    // 发送按钮
+
+    // ReconnectingWebSocket 这是一个websocket断开自动重连的库, https://github.com/joewalnes/reconnecting-websocket
+    // 使用字节跳动的CDN https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/reconnecting-websocket/1.0.0/reconnecting-websocket.js
+
+
+    let input_eara = document.querySelector('textarea')  // 文本框
+    let btn = input_eara.nextSibling;//发送按钮
 
 
     btn.addEventListener('DOMSubtreeModified', function () {
@@ -54,6 +53,8 @@
         let lt = JSON.parse(event.data)
         console.log(lt.msg)
 
+        input_eara = document.querySelector('textarea')
+        btn = input_eara.nextSibling
         // 向chatgpt发送消息
         input_eara.value = lt.msg;
         input_eara.nextSibling.click();
