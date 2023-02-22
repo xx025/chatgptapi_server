@@ -1,10 +1,12 @@
 // ==UserScript==
-// @name         ChatGptPagesScripts
-// @namespace    https://bbs.tampermonkey.net.cn/
-// @version      0.1.0
-// @description  try to take over the world!
+// @name         ChatGPT-link-to-PythonWeb
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  关注：https://github.com/xx025/browser-chatgptapi
 // @author       You
 // @match        https://chat.openai.com/chat*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=openai.com
+// @grant        none
 // ==/UserScript==
 
 
@@ -12,11 +14,13 @@
     'use strict';
 
     let k = 0;
-    console.log(k)
+    console.log(```
+        // @name         ChatGPT-link-to-PythonWeb
+        // @description  关注：https://github.com/xx025/browser-chatgptapi
+        ```)
 
-
-    // 服务器地址
     let server_url = "ws://localhost:8010/server/server"
+    // 如果只是本机测试，请勿做改变，当然注意端口号
     //  如果web服务器与脚本运行的客户端不在一个机器上，需要在chrome
     //  中关闭安全检查允许Https+ws这种允许方式
     // 可参考：https://blog.csdn.net/qq_36657291/article/details/111947175
