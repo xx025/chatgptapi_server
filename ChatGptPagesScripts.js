@@ -14,10 +14,9 @@
 (function () {
     'use strict';
 
-    let k = 0;
+
     console.log(`// @name         ChatGPT-link-to-PythonWeb
-// @description  关注：https://github.com/xx025/browser-chatgptapi
-        `)
+// @description  关注：https://github.com/xx025/browser-chatgptapi`)
 
     let server_url = "ws://localhost:8010/server/server"
     // 如果只是本机测试，请勿做改变，当然注意端口号
@@ -35,33 +34,32 @@
     let input_eara = document.querySelector('textarea')  // 文本框
     let btn = input_eara.nextSibling;//发送按钮
 
-
-    btn.addEventListener('DOMSubtreeModified', function () {
-        // 对发送按钮进行监听，可获取一个轮回完成事件
-        k += 1
-        console.log(k)
-        if (k === 6) {
-            let aiso = document.querySelectorAll('.markdown');
-            let result = aiso[aiso.length - 1].innerText
-            console.log(result)
-            ws.send(JSON.stringify({msg: result}))
-        }
-    }, false);
-
-
+    let k = 0;
+    let listener = false;
     ws.onmessage = function (event) {
         let lt = JSON.parse(event.data)
         console.log(lt.msg)
-
         input_eara = document.querySelector('textarea')
         btn = input_eara.nextSibling
         // 向chatgpt发送消息
         input_eara.value = lt.msg;
         input_eara.nextSibling.click();
         k = 0;
+
+        if (!listener) {
+            listener = true;
+            btn.addEventListener('DOMSubtreeModified', function () {
+                // 对发送按钮进行监听，可获取一个轮回完成事件
+                k += 1
+                if (k === 6) {
+                    let selectorAll = document.querySelectorAll('.markdown');
+                    let result = selectorAll[selectorAll.length - 1].innerText
+                    console.log(result)
+                    ws.send(JSON.stringify({msg: result}))
+                }
+            }, false);
+        }
     };
-
-
 })();
 
 
