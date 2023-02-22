@@ -106,4 +106,5 @@ if __name__ == "__main__":
     import uvicorn
 
     # 官方推荐是用命令后启动 uvicorn main:app --host=127.0.0.1 --port=8010 --reload
-    uvicorn.run('run:app', host='localhost', port=8010, reload=True,debug=True)
+    # 如果是linux服务器并且附带python37+环境则直接运行 pip install fastapi jinja2 uvicorn[standard]
+    uvicorn.run('run:app', host='0.0.0.0', port=8010)
