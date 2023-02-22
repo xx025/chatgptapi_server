@@ -6,18 +6,22 @@
 // @author       You
 // @match        https://chat.openai.com/chat*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=openai.com
+// @require      https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/reconnecting-websocket/1.0.0/reconnecting-websocket.js
 // @grant        none
 // ==/UserScript==
 
+
+//这是一个websocket断开自动重连的库,使用字节跳动的CDN
+// https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/reconnecting-websocket/1.0.0/reconnecting-websocket.js
+// https://github.com/joewalnes/reconnecting-websocket
 
 (function () {
     'use strict';
 
     let k = 0;
-    console.log(```
-        // @name         ChatGPT-link-to-PythonWeb
-        // @description  关注：https://github.com/xx025/browser-chatgptapi
-        ```)
+    console.log(`// @name         ChatGPT-link-to-PythonWeb
+// @description  关注：https://github.com/xx025/browser-chatgptapi
+        `)
 
     let server_url = "ws://localhost:8010/server/server"
     // 如果只是本机测试，请勿做改变，当然注意端口号
@@ -26,7 +30,7 @@
     // 可参考：https://blog.csdn.net/qq_36657291/article/details/111947175
 
 
-    var ws = new WebSocket(server_url);
+    var ws = new ReconnectingWebSocket(server_url);
     let input_eara = document.querySelector('textarea')
     // 文本框
     let btn = input_eara.nextSibling
