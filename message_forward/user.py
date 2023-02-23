@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from fastapi import WebSocket, WebSocketDisconnect
 from pydantic import BaseModel, Field
 
-from message_forward.public_param import user_manager, server_manager
+from message_forward.manger import user_manager, server_manager
 
 user = APIRouter()
 
