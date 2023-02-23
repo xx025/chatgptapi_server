@@ -2,7 +2,7 @@
 
 将网页版ChatGPT做成API，
 
-**如何使用**：[如何使用？](wiki/如何使用.md)
+
 
 **真逆向ChatAPI**： [acheong08/ChatGPT](https://github.com/acheong08/ChatGPT)
 
@@ -16,15 +16,7 @@
 
 一个web服务器，chatgpt网页利用注入脚本与服务器通信，接收查询语句并返回,利用sowebscoekt 协议与服务器进行通信。
 
-
-
-
-
-
-- ./ChatGptPagesScripts.js :导入浏览器脚本管理器
-- ./run.py web服务
-- ./index.html 一个简单的测试页面
-
+**如何使用**：[如何使用？](wiki/如何使用.md)
 
 
 ### 演示：
