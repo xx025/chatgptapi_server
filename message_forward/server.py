@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import WebSocket, WebSocketDisconnect
 
-from message_forward.public_param import server_manager
+from message_forward.manger import server_manager
 
 # from message_forward.public_param import server_manager
 
