@@ -17,10 +17,8 @@ redis 是一个同步客户端，它使用阻塞 I/O 操作与 Redis 服务器�
 r = Redis(host='127.0.0.1', port=6379, db=0)
 # 连接Redis数据库
 
-manger_app = {}
-manger_app['app1_status'] = 0
+manger_app = {'app1_status': 0}
 
-query_queue = Queue(maxsize=0)  # 查询消息队列
 
 user_manager = {}  # 用户管理
 
