@@ -1,6 +1,8 @@
 # browser-chatgptapi
 
-将网页版ChatGPT做成API，
+Transform the web version of ChatGPT into an API and make it accessible for multi-user usage;
+
+将网页版ChatGPT变成API，并做到一张号人使用用
 
 **如何使用**：[如何使用？](wiki/如何使用.md)
 
