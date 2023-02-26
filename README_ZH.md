@@ -21,7 +21,7 @@
 
 ### 架构图
 
-![架构图.png](imgs/architecture-diagram.png)
+![架构图.png](imgs/zh_architecture-diagram.png)
 
 
 

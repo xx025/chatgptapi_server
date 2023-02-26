@@ -23,7 +23,7 @@ Build a message forwarding server, and complete communication with the server by
 
 ### Architecture diagram
 
-![architecture-diagram.png](imgs/architecture-diagram.png)
+![architecture-diagram.png](imgs/en_architecture-diagram.png)
 
 
 
