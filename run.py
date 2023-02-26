@@ -3,7 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
 
-from message_forward import user, server
+from message_forward import user, app1
 
 app = FastAPI()
 
@@ -16,14 +16,14 @@ app.add_middleware(
 )
 
 app.include_router(user, prefix='/user', )
-app.include_router(server, prefix='/server')
+app.include_router(app1, prefix='/server')
 
 templates = Jinja2Templates(directory='./')
 
 
 @app.get("/")
 def index(request: Request):
-    api_url = 'ws://localhost:8010/user/user1'
+    api_url = 'ws://localhost:8010/user'
     return templates.TemplateResponse("index2.html",
                                       {"request": request, 'api_url': api_url})
 

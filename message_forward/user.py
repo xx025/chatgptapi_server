@@ -1,8 +1,10 @@
+import json
+
 from fastapi import APIRouter
 from fastapi import WebSocket, WebSocketDisconnect
 from pydantic import BaseModel, Field
 
-from message_forward.manger import user_manager, server_manager
+from message_forward.manger import user_manager, max_users, manger_app, r
 
 user = APIRouter()
 
@@ -18,16 +20,25 @@ def get_user_id():
 class Message(BaseModel):
     msg: str = Field(...,
                      max_length=300,
-                     description='This is the request body format for sending messages')
+                     description='This is the request body format for sending messages'
+                     )
 
 
-# class User(BaseModel):
-#     id: str
-#     query_count: int
-#     ws: WebSocket
+async def sendto_server(data: Message, user_id: str):
+    """
+
+    :param data: Message 对象，需要先转换成json对象再进行json dumps存储
+    :param user_id:
+    :return:
+    """
+    if manger_app['app1_status'] == 1:
+
+        await r.lpush('msgs', json.dumps({'user_id': user_id,
+                                          'query_msg': data.json()}))
 
 
-max_users = 3
+    else:
+        return 'No service available.'
 
 
 async def receive_query_data(ws):
@@ -63,9 +74,7 @@ async def websocket_endpoint(ws: WebSocket):
                     if wait_status:
                         await ws.send_json({'msg': 'Please wait for the previous message to return.'})
                     else:
-                        # result = await sendto_server(data, user_id)
-                        await server_manager["server"].send_json({'msg': f'Connection successful'})
-
+                        await sendto_server(data, user_id)
 
         except WebSocketDisconnect:
 
