@@ -1,11 +1,10 @@
 import json
-from time import sleep
 
 from fastapi import APIRouter
 from fastapi import WebSocket
 from starlette.websockets import WebSocketDisconnect
 
-from message_forward.manger import query_queue, manger_app, r, user_manager
+from message_forward.manger import manger_app, r, user_manager
 
 app1 = APIRouter()
 
