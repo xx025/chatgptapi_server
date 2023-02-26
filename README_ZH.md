@@ -15,7 +15,7 @@
 
 **演示视频**：[YouTube](https://www.youtube.com/embed/o4SETVDbaEY)
 
-![image](imgs/220007238-2b040e5e-1be7-404e-9cc6-3605f862660d.png)
+![image](imgs/api_test.png)
 
 
 
