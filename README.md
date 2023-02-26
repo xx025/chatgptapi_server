@@ -1,37 +1,39 @@
 # browser-chatgptapi
 
-Transform the web version of ChatGPT into an API and make it accessible for multi-user usage;
+[中文简体](README_ZH.md)
 
-将网页版ChatGPT变成API，支持多人同时连接
+By injecting js scripts into the browser OpenAI ChatGPT page, ChatGPT on the web page is turned into an API that supports multiple simultaneous connections
 
-演示视频
-https://www.youtube.com/embed/o4SETVDbaEY
+**How to use**: [How to use?](wiki/how-to-use.md)
 
-**如何使用**：[如何使用？](wiki/如何使用.md)
-
+**Recommended Magic Network**: [click this link to have a monthly $1 discount package](https://xx025.github.io/773ycd9u.html)
 
 
-**推荐魔法网络**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u.html)
+### Implementation idea.
 
+Build a message forwarding server, and complete communication with the server by injecting scripts into the browser ChatGPT page. The message forwarding server allows multiple users to connect, and queries raised by the user are queued and processed in order and returned to the user.
 
-### 实现思路：
+### Demonstration.
 
-一个web服务器，chatgpt网页利用注入脚本与服务器通信，接收查询语句并返回,利用sowebscoekt 协议与服务器进行通信。
+**Demo video**: [YouTube](https://www.youtube.com/embed/o4SETVDbaEY)
 
-### 演示：
-![image](https://user-images.githubusercontent.com/71559822/220007238-2b040e5e-1be7-404e-9cc6-3605f862660d.png)
+![image](imgs/220007238-2b040e5e-1be7-404e-9cc6-3605f862660d.png)
 
 
 
-### 架构图
-![架构图.png](wiki/架构图.png)
+### Architecture diagram
 
-
-### 逆向工程
-
- [ChatGPT逆向工程 acheong08/ChatGPT](https://github.com/acheong08/ChatGPT)
+![architecture-diagram.png](imgs/architecture-diagram.png)
 
 
 
-### 最后
-**代码比较简陋，可完善之处多多，欢迎参与一起开发**
+### Finally
+
+**The code is relatively rudimentary, there is much room for improvement, welcome to participate in the development together**
+
+
+
+
+
+*These translations come from deepl*
+
