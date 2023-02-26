@@ -2,9 +2,9 @@ import json
 
 from fastapi import APIRouter
 from fastapi import WebSocket, WebSocketDisconnect
-from pydantic import BaseModel, Field
 
 from message_forward.manger import user_manager, max_users, manger_app, r
+from message_forward.models import Message
 
 user = APIRouter()
 
@@ -17,13 +17,6 @@ def get_user_id():
     return f'user{index}'
 
 
-class Message(BaseModel):
-    msg: str = Field(...,
-                     max_length=300,
-                     description='This is the request body format for sending messages'
-                     )
-
-
 async def sendto_server(data: Message, user_id: str):
     """
 
@@ -32,11 +25,8 @@ async def sendto_server(data: Message, user_id: str):
     :return:
     """
     if manger_app['app1_status'] == 1:
-
         await r.lpush('msgs', json.dumps({'user_id': user_id,
                                           'query_msg': data.json()}))
-
-
     else:
         return 'No service available.'
 
@@ -47,9 +37,10 @@ async def receive_query_data(ws):
         data = Message(**data)
     except:
         data = False
-        await ws.send_json({'msg': 'Data format error or query parameter too '
-                                   'long. The query parameter is limited to '
-                                   '300 characters or less.'})
+        await ws.send_json(
+            {'msg': 'Data format error or query parameter too '
+                    'long. The query parameter is limited to '
+                    '300 characters or less.'})
     return data
 
 
