@@ -18,7 +18,7 @@
     console.log(`// @name         ChatGPT-link-to-PythonWeb
 // @description  关注：https://github.com/xx025/browser-chatgptapi`)
 
-    let server_url = "ws://localhost:8010/server/server"
+    let server_url = "ws://localhost:8010/server"
     // 如果只是本机测试，请勿做改变，当然注意端口号
     //  如果web服务器与脚本运行的客户端不在一个机器上，需要在chrome
     //  中关闭安全检查允许Https+ws这种允许方式
