@@ -2,9 +2,12 @@
 
 Transform the web version of ChatGPT into an API and make it accessible for multi-user usage;
 
-将网页版ChatGPT变成API，并做到一张号人使用用
+将网页版ChatGPT变成API，支持多人同时连接
 
+演示视频
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o4SETVDbaEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 **如何使用**：[如何使用？](wiki/如何使用.md)
+
 
 
 **推荐魔法网络**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u.html)
