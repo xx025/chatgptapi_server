@@ -217,9 +217,15 @@
         document.querySelector(".content").scrollTop = height;
     }
 
-    var ws = new WebSocket('{{api_url}}');
+
+
+    let ws_api = "{{ws_api}}";
+
+
+    const ws = new WebSocket(ws_api);
 
     ws.onmessage = function (event) {
+        // 接收到消息
         lt = JSON.parse(event.data)
         resives(lt.msg)
     };
@@ -233,6 +239,7 @@
         }
 
         send(input)
+        // 发送消息
         ws.send(JSON.stringify({msg: input}))
         input.value = ''
     }
