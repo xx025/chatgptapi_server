@@ -1,12 +1,12 @@
 # browser-chatgptapi
 
-[中文简体](README_ZH.md)
+[中文简体](README_zh.md)  
+
+**推荐魔法网络**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u.html)
 
 By injecting js scripts into the browser OpenAI ChatGPT page, ChatGPT on the web page is turned into an API that supports multiple simultaneous connections
 
 **How to use**: [How to use?](wiki/how-to-use.md)
-
-**Recommended Magic Network**: [click this link to have a monthly $1 discount package](https://xx025.github.io/773ycd9u.html)
 
 
 ### Implementation idea.
