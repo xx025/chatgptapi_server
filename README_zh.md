@@ -4,8 +4,8 @@
 
 **购买ChatGPT账号**: [价格实惠，1元起，去购买](https://xx025.github.io/z9c3c4)
 
-**推荐魔法网络**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u) 
->支持ChatGPT
+**推荐魔法网络>支持ChatGPT**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u) 
+
 
 
 通过向浏览器OpenAI ChatGPT页面注入js脚本的方式，将网页上的ChatGPT变成一个API，支持多人同时连接
