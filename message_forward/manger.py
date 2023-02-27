@@ -1,6 +1,6 @@
-from asyncio import Queue
-
 from aioredis import Redis
+
+from setting import max_users
 
 """
 this explains form chatgpt
@@ -19,7 +19,6 @@ r = Redis(host='127.0.0.1', port=6379, db=0)
 
 manger_app = {'app1_status': 0}
 
-
 user_manager = {}  # 用户管理
 
-max_users = 3  # 最大用户数量
+max_users = max_users  # 最大用户数量
