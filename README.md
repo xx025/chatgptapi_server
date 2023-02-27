@@ -4,8 +4,8 @@
 
 **购买ChatGPT账号**: [价格实惠，1元起，去购买](https://xx025.github.io/z9c3c4)
 
-**推荐魔法网络**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u) 
->支持ChatGPT
+**推荐魔法网络>支持ChatGPT**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u) 
+
 
 
 
