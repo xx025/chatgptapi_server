@@ -37,6 +37,8 @@ async def websocket_endpoint(ws: WebSocket, token: str = Depends(get_cookie_or_t
     server_id = get_server_id()  # 当然可以用token作为id 或某种id-token的一对一映射
     server_manger[server_id] = ws
 
+    print(f"{server_id} connected")
+
     # for user_ws in user_manager.values():
     #     await user_ws.send_json({'msg': f'The {server_id} is now available'})
 
