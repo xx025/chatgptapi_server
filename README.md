@@ -2,13 +2,6 @@
 
 [中文简体](wiki/README_zh.md)  
 
-**购买ChatGPT账号**: [价格实惠，1元起，去购买](https://xx025.github.io/z9c3c4)
-
-**推荐魔法网络>支持ChatGPT**：[点此链接有月1元优惠套餐](https://xx025.github.io/773ycd9u) 
-
-
-
-
 By injecting js scripts into the browser OpenAI ChatGPT page, ChatGPT on the web page is turned into an API that supports multiple simultaneous connections and  supports hosting multiple ChatGPT accounts.
 
 **How to use**: [How to use?](wiki/how-to-use.md)
