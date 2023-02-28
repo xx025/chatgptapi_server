@@ -13,7 +13,7 @@ Build a message forwarding server, and complete communication with the server by
 
 ### Demonstration.
 
-**Demo video**: [YouTube](https://www.youtube.com/embed/o4SETVDbaEY)
+**Demo video**: [YouTube](https://www.youtube.com/watch?v=dis8NDfT16I)
 
 ![image](imgs/api_test.png)
 
