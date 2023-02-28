@@ -1,37 +1,29 @@
 # browser-chatgptapi
 
-[中文简体](wiki/README_zh.md)  
+通过向浏览器OpenAI ChatGPT页面注入js脚本的方式，将网页上的ChatGPT变成一个API，支持多人同时连接,连接多个ChatGPT账户
 
-By injecting js scripts into the browser OpenAI ChatGPT page, ChatGPT on the web page is turned into an API that supports multiple simultaneous connections and  supports hosting multiple ChatGPT accounts.
+**如何使用**：[如何使用？](wiki/如何使用.md)
 
-**How to use**: [How to use?](wiki/如何使用.md)
+## 快速开始
+
+```shell
 
 
-### Implementation idea.
+```
+### 实现思路：
 
-Build a message forwarding server, and complete communication with the server by injecting scripts into the browser ChatGPT page. The message forwarding server allows multiple users to connect, and queries raised by the user are queued and processed in order and returned to the user.
+构建一个消息转发服务器，通过向浏览器ChatGPT页面注入脚本完成与服务器的通信，消息转发服务器允许多个用户进行连接，并且用户提出的查询进行排队依次处理并返回给用户。
 
-### Demonstration.
+### 演示：
 
-**Demo video**: [YouTube](https://www.youtube.com/watch?v=dis8NDfT16I)
+**演示视频**：[YouTube](https://www.youtube.com/watch?v=dis8NDfT16I)
 
 ![image](imgs/api_test.png)
 
+### 架构图
 
+![架构图.png](imgs/en_architecture-diagram.png)
 
-### Architecture diagram
+### 最后
 
-![architecture-diagram.png](imgs/en_architecture-diagram.png)
-
-
-
-### Finally
-
-**The code is relatively rudimentary, there is much room for improvement, welcome to participate in the development together**
-
-
-
-
-
-*These translations come from deepl*
-
+**代码比较简陋，可完善之处多多，欢迎参与一起开发**
