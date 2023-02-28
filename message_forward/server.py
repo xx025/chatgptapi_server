@@ -1,18 +1,42 @@
 import json
+from typing import Union
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Query, HTTPException, Depends
 from fastapi import WebSocket
+from starlette import status
 from starlette.websockets import WebSocketDisconnect
 
-from message_forward.manger import manger_app, r, user_manager
+from message_forward.manger import server_manger, r, user_manager
+from setting import server_tokens
 
 app1 = APIRouter()
 
+index = 0
+
+
+def get_server_id():
+    global index
+    index += 1
+    return f'server{index}'
+
+
+async def get_cookie_or_token(
+        websocket: WebSocket,
+        token: Union[str, None] = Query(default=None),
+):
+    return token
+
 
 @app1.websocket("")
-async def websocket_endpoint(ws: WebSocket):
+async def websocket_endpoint(ws: WebSocket, token: str = Depends(get_cookie_or_token)):
     await ws.accept()
-    manger_app['app1_status'] = 1
+    if token not in server_tokens:
+        await ws.send_text('Require the correct token.!.')
+        await ws.close()
+        return
+
+    server_id = get_server_id()  # 当然可以用token作为id 或某种id-token的一对一映射
+    server_manger[server_id] = ws
 
     for user_ws in user_manager.values():
         await user_ws.send_json({'msg': 'The server is now available'})
@@ -34,7 +58,6 @@ async def websocket_endpoint(ws: WebSocket):
                 else:
                     print("User not found")
 
-
         except WebSocketDisconnect:
-            print(f'app1 disconnected')
-            manger_app['app1_status'] = 0
+            print(f'{server_id} disconnected')
+            server_manger.pop(server_id)
