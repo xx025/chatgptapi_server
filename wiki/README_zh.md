@@ -10,7 +10,7 @@
 
 ### 演示：
 
-**演示视频**：[YouTube](https://www.youtube.com/embed/o4SETVDbaEY)
+**演示视频**：[YouTube](https://www.youtube.com/watch?v=dis8NDfT16I)
 
 ![image](../imgs/api_test.png)
 
