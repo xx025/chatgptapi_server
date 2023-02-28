@@ -1,0 +1,5 @@
+aioredis==2.0.1
+fastapi==0.92.0
+pydantic==1.10.5
+starlette==0.25.0
+uvicorn==0.20.0
