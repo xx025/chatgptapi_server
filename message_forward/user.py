@@ -2,8 +2,9 @@ import json
 
 from fastapi import APIRouter
 from fastapi import WebSocket, WebSocketDisconnect
+from pydantic import ValidationError
 
-from message_forward.manger import user_manager, max_users, manger_app, r
+from message_forward.manger import user_manager, max_users, server_manger, r
 from message_forward.models import Message
 
 user = APIRouter()
@@ -24,24 +25,24 @@ async def sendto_server(data: Message, user_id: str):
     :param user_id:
     :return:
     """
-    if manger_app['app1_status'] == 1:
+    if len(server_manger) < 1:
         await r.lpush('msgs', json.dumps({'user_id': user_id,
                                           'query_msg': data.json()}))
     else:
         return 'No service available.'
 
 
-async def receive_query_data(ws):
+async def receive_query_data(user_id):
     try:
-        data = await ws.receive_json()
-        data = Message(**data)
-    except:
-        data = False
-        await ws.send_json(
+        data = await user_manager[user_id].receive_json()
+        return Message(**data)
+    except ValidationError:
+        await user_manager[user_id].send_json(
             {'msg': 'Data format error or query parameter too '
                     'long. The query parameter is limited to '
                     '300 characters or less.'})
-    return data
+    except WebSocketDisconnect:
+        raise WebSocketDisconnect
 
 
 @user.websocket("")
@@ -60,11 +61,12 @@ async def websocket_endpoint(ws: WebSocket):
 
         try:
             while True:
-                data = await receive_query_data(ws)
+                data = await receive_query_data(user_id)
                 if data:
                     if wait_status:
                         await ws.send_json({'msg': 'Please wait for the previous message to return.'})
                     else:
+                        wait_status = True
                         await sendto_server(data, user_id)
 
         except WebSocketDisconnect:
