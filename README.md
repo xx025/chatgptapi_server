@@ -7,7 +7,17 @@
 ## 快速开始
 
 ```shell
+git clone -b master https://github.com/xx025/browser-chatgptapi.git
 
+cd browser-chatgptapi
+
+pip install virtualenv
+
+virtualenv venv
+
+pip install -r requirements.txt
+
+python run.py
 
 ```
 ### 实现思路：
