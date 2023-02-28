@@ -1,6 +1,6 @@
 # browser-chatgptapi
 
-[中文简体](README_zh.md)  
+[中文简体](wiki/README_zh.md)  
 
 **购买ChatGPT账号**: [价格实惠，1元起，去购买](https://xx025.github.io/z9c3c4)
 
@@ -9,7 +9,7 @@
 
 
 
-By injecting js scripts into the browser OpenAI ChatGPT page, ChatGPT on the web page is turned into an API that supports multiple simultaneous connections
+By injecting js scripts into the browser OpenAI ChatGPT page, ChatGPT on the web page is turned into an API that supports multiple simultaneous connections and  supports hosting multiple ChatGPT accounts.
 
 **How to use**: [How to use?](wiki/how-to-use.md)
 
