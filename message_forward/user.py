@@ -25,7 +25,8 @@ async def sendto_server(data: Message, user_id: str):
     :param user_id:
     :return:
     """
-    if len(server_manger) < 1:
+    if len(server_manger) > 0:
+
         await r.lpush('msgs', json.dumps({'user_id': user_id,
                                           'query_msg': data.json()}))
     else:
@@ -66,7 +67,6 @@ async def websocket_endpoint(ws: WebSocket):
                     if wait_status:
                         await ws.send_json({'msg': 'Please wait for the previous message to return.'})
                     else:
-                        wait_status = True
                         await sendto_server(data, user_id)
 
         except WebSocketDisconnect:
