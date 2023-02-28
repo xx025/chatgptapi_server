@@ -1,6 +1,14 @@
 from aioredis import Redis
 
-from setting import max_users
+from setting import max_users, redis_host, redis_port, redis_db
+
+r = Redis(host=redis_host, port=redis_port, db=redis_db)  # 连接Redis数据库
+
+server_manger = {}  # 服务管理
+
+user_manager = {}  # 用户管理
+
+max_users = max_users  # 最大用户数量
 
 """
 this explains form chatgpt
@@ -13,12 +21,3 @@ redis 是一个同步客户端，它使用阻塞 I/O 操作与 Redis 服务器�
 
 因此，如果您正在使用 Python 的异步编程模型（例如 asyncio），则应该使用 aioredis。如果您使用的是传统的同步编程模型，那么可以使用 redis。
 """
-
-r = Redis(host='127.0.0.1', port=6379, db=0)
-# 连接Redis数据库
-
-manger_app = {'app1_status': 0}
-
-user_manager = {}  # 用户管理
-
-max_users = max_users  # 最大用户数量
