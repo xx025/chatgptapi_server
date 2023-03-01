@@ -36,7 +36,7 @@ if __name__ == "__main__":
     uvicorn.run('run:app', host='0.0.0.0', port=port,
                 reload=True,
                 reload_delay=0.25,
-                ws_ping_interval=3600,
-                ws_ping_timeout=3600,
-                timeout_keep_alive=9999
+                ws_ping_interval=99999,
+                ws_ping_timeout=99999,
+                timeout_keep_alive=99999
                 )
