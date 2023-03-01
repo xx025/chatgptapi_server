@@ -3,3 +3,7 @@ fastapi==0.92.0
 pydantic==1.10.5
 starlette==0.25.0
 uvicorn==0.20.0
+
+revChatGPT~=2.3.15
+ws4py~=0.5.1
+configobj~=5.0.8
