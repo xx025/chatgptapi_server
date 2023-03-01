@@ -3,7 +3,7 @@ from typing import Union
 
 from fastapi import APIRouter, Query, Depends
 from fastapi import WebSocket
-from starlette.websockets import WebSocketDisconnect
+from starlette.websockets import WebSocketDisconnect, WebSocketState
 
 from message_forward.manger import server_manger, r, user_manager
 from setting import server_tokens
@@ -46,19 +46,21 @@ async def websocket_endpoint(ws: WebSocket, token: str = Depends(get_cookie_or_t
                 d1 = await r.rpop('msgs')
 
                 if d1:
-                    # 暂时不知道问什么会取出None
+                    # 心跳机制传入None
                     data = json.loads(d1.decode('utf-8'))
-
                     user_id = data['user_id']
-                    user_msg = json.loads(data['query_msg'])
-                    print(user_id, user_msg)
-                    await ws.send_json(user_msg)
-                    ans1 = await ws.receive_json()
-                    if user_manager.get(user_id):
-                        print(user_id, ans1)
-                        await user_manager[user_id].send_json(ans1)
-                    else:
-                        print("User not found")
+                    user_query = json.loads(data['query_msg'])
+                    print(server_id, '<---', user_id, ':', user_query)
+                    try:
+                        await ws.send_json(user_query)
+                        server_answer = await ws.receive_json()
+                        if user_manager.get(user_id):
+                            print(server_id, '-->', user_id, server_answer)
+                            await user_manager[user_id].send_json(server_answer)
+                        else:
+                            print("User not found")
+                    except WebSocketDisconnect:
+                        raise WebSocketDisconnect
 
         except WebSocketDisconnect:
             print(f'{server_id} disconnected')
