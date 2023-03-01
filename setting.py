@@ -4,6 +4,7 @@ from configobj import ConfigObj
 
 import os
 
+#  将配置信息写在setting.cfg或example.setting.cfg中
 if os.path.exists('setting.cfg'):
     setting_path = 'setting.cfg'
 else:
