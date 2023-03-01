@@ -6,8 +6,12 @@
 
 ## 快速开始
 
+在此之前你需要有一个redis数据库，在`setting.py`一些基础的配置选项，包含主机地址、端口号、redis数据库等。
+
 1. 运行web服务
 
+    
+    
     ```shell
     git clone -b master https://github.com/xx025/browser-chatgptapi.git
     cd browser-chatgptapi
@@ -15,11 +19,11 @@
     virtualenv venv
     venv\Scripts\activate.bat  
     pip install -r requirements.txt
-    python run.py
-    ```
+   python run.py
+   ```
 
    此时web服务正在允许，他有两个重要的接口
-
+   
     - `ws://localhost:8010/user` 供用户连接
     - `ws://localhost:8010/server` 供chatgpt服务连接
    
@@ -42,7 +46,7 @@
 
 2. 连接chatgpt服务
    
-   - 下面是工作在revChatGPT[完整代码](etc/revChatGPT.py)
+   - 下面是工作在revChatGPT[完整代码](etc/revChatGPT2.py)
    ```python
     import json
     from revChatGPT.V1 import Chatbot
