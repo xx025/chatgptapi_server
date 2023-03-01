@@ -60,6 +60,8 @@ async def websocket_endpoint(ws: WebSocket, token: str = Depends(get_cookie_or_t
                         else:
                             print("User not found")
                     except WebSocketDisconnect:
+                        # 如果当前服务断开，需要将用户的询问重新排队
+                        await r.rpush('msgs', d1)
                         raise WebSocketDisconnect
 
         except WebSocketDisconnect:

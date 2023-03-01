@@ -40,3 +40,5 @@ if __name__ == "__main__":
                 ws_ping_timeout=99999,
                 timeout_keep_alive=99999
                 )
+    #linux 部署
+    # #  部署 ：nohup uvicorn run:app --host=0.0.0.0 --port=8010 --ws-ping-interval=99999 --ws-ping-timeout=99999 --timeout-keep-alive=99999 > output.log 2>&1 &
