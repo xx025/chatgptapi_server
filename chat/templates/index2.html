@@ -219,30 +219,7 @@
 
 
 
-    let ws_api = "{{ws_api}}";
 
-
-    const ws = new WebSocket(ws_api);
-
-    ws.onmessage = function (event) {
-        // 接收到消息
-        lt = JSON.parse(event.data)
-        resives(lt.msg)
-    };
-
-    function sendMessage() {
-
-        let input = document.querySelector('textarea').value;
-        if (!input) {
-            alert('请输入内容');
-            return;
-        }
-
-        send(input)
-        // 发送消息
-        ws.send(JSON.stringify({msg: input}))
-        input.value = ''
-    }
 
 
 </script>

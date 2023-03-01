@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LiteChat</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='css/litewebchat.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='css/litewebchat_input.min.css') }}">
+    <style>/* 全局 */
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .lite-chatmaster {
+        height: 100%;
+        width: 100%;
+    }
+
+    ::-webkit-scrollbar {
+        /* 滚动条整体样式 */
+        width: 3px;
+        /* 高宽分别对应横竖滚动条的尺寸 */
+        height: 1px;
+    }</style>
+</head>
+<body><!-- 主容器 -->
+<div class="lite-chatmaster">
+    <div class="lite-chatbox"></div>
+    <div class="lite-chattools">
+        <div class="lite-chatbox-tool" id="emojiMart" style="display:none"></div>
+        <div id="toolMusk" style="display:none"></div>
+    </div>
+    <div class="lite-chatinput">
+        <hr class="boundary">
+        <button class="tool-button float-left" id="emojiBtn" title="表情" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10"></path>
+                <path d="M8 7a2 2 0 1 0-.001 3.999A2 2 0 0 0 8 7M16 7a2 2 0 1 0-.001 3.999A2 2 0 0 0 16 7M15.232 15c-.693 1.195-1.87 2-3.349 2-1.477 0-2.655-.805-3.347-2H15m3-2H6a6 6 0 1 0 12 0"></path>
+            </svg>
+        </button>
+
+        <button class="theme-switch tool-button float-left">
+            <svg width="18px" height="18px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                 aria-labelledby="nightModeIconTitle" stroke="#8b8799" stroke-width="2.6666666666666665"
+                 stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#8b8799"><title
+                    id="nightModeIconTitle">Night Mode</title>
+                <path d="M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"/>
+                <path d="M15.899 12.899a4 4 0 0 1-4.797-4.797A4.002 4.002 0 0 0 12 16c1.9 0 3.49-1.325 3.899-3.101z"></path>
+                <path d="M12 5V3M12 21v-2"/>
+                <path d="M5 12H2h3zM22 12h-3 3zM16.95 7.05L19.07 4.93 16.95 7.05zM4.929 19.071L7.05 16.95 4.93 19.07zM16.95 16.95l2.121 2.121-2.121-2.121zM4.929 4.929L7.05 7.05 4.93 4.93z"/>
+            </svg>
+        </button>
+
+        <button class="tool-button float-right" id="editFullScreen" title="全屏编辑" type="button">
+            <svg svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+                <path d="M17.066667 2.844444C11.377778 2.844444 8.533333 5.688889 5.688889 8.533333 2.844444 11.377778 0 14.222222 0 19.911111v364.088889c0 2.844444 0 5.688889 2.844444 5.688889h5.688889l122.311111-122.311111 164.977778 164.977778c2.844444 2.844444 8.533333 5.688889 11.377778 5.688888 5.688889 0 8.533333-2.844444 11.377778-5.688888l110.933333-110.933334c2.844444-2.844444 5.688889-8.533333 5.688889-11.377778 0-5.688889-2.844444-8.533333-5.688889-11.377777l-159.288889-170.666667L389.688889 8.533333c2.844444-2.844444 2.844444-2.844444 0-5.688889 0-2.844444-2.844444-2.844444-2.844445-2.844444L17.066667 2.844444zM17.066667 1024c-5.688889 0-8.533333-2.844444-11.377778-5.688889-2.844444-2.844444-5.688889-8.533333-5.688889-11.377778V640c0-2.844444 0-5.688889 2.844444-5.688889h5.688889l122.311111 122.311111 164.977778-164.977778c2.844444-2.844444 8.533333-5.688889 11.377778-5.688888 5.688889 0 8.533333 2.844444 11.377778 5.688888l110.933333 110.933334c2.844444 2.844444 5.688889 8.533333 5.688889 11.377778s-2.844444 8.533333-5.688889 11.377777l-164.977778 164.977778 119.466667 119.466667c2.844444 2.844444 2.844444 2.844444 0 5.688889 0 2.844444-2.844444 2.844444-5.688889 2.844444L17.066667 1024zM1006.933333 2.844444c5.688889 0 8.533333 2.844444 11.377778 5.688889 2.844444 2.844444 5.688889 5.688889 5.688889 11.377778v364.088889c0 2.844444 0 5.688889-2.844444 5.688889h-5.688889l-122.311111-122.311111-164.977778 164.977778c-2.844444 2.844444-8.533333 5.688889-11.377778 5.688888-5.688889 0-8.533333-2.844444-11.377778-5.688888l-110.933333-110.933334c-2.844444-2.844444-5.688889-8.533333-5.688889-11.377778 0-5.688889 2.844444-8.533333 5.688889-11.377777l164.977778-164.977778L640 14.222222c-2.844444-2.844444-2.844444-2.844444 0-5.688889-5.688889-8.533333-2.844444-8.533333-2.844444-8.533333l369.777777 2.844444z m0 1021.155556c5.688889 0 8.533333-2.844444 11.377778-5.688889 2.844444-2.844444 5.688889-8.533333 5.688889-11.377778V640c0-2.844444 0-5.688889-2.844444-5.688889h-5.688889l-122.311111 122.311111-164.977778-164.977778c-2.844444-2.844444-8.533333-5.688889-11.377778-5.688888-5.688889 0-8.533333 2.844444-11.377778 5.688888l-110.933333 110.933334c-2.844444 2.844444-5.688889 8.533333-5.688889 11.377778s2.844444 8.533333 5.688889 11.377777l164.977778 164.977778-119.466667 119.466667c-2.844444 2.844444-2.844444 2.844444 0 5.688889 0 2.844444 2.844444 2.844444 5.688889 2.844444l361.244444 5.688889z"></path>
+            </svg>
+        </button>
+        <button class="tool-button float-right" id="exitFullScreen" style="display:none" title="退出" type="button">
+            <svg svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+                <path d="M422.648199 431.157895c5.67313 0 8.509695-2.836565 11.346261-5.67313 2.836565-2.836565 5.67313-8.509695 5.67313-11.346261V51.058172c0-2.836565 0-5.67313-2.836565-5.67313h-5.67313L306.34903 170.193906 141.828255 5.67313C138.99169 2.836565 133.31856 0 130.481994 0c-5.67313 0-11.34626 2.836565-14.182825 5.67313L5.67313 116.299169c-2.836565 2.836565-5.67313 8.509695-5.67313 11.34626 0 5.67313 2.836565 11.34626 5.67313 14.182826L170.193906 303.512465l-119.135734 119.135734c-2.836565 2.836565-2.836565 2.836565 0 5.673131 0 2.836565 2.836565 2.836565 5.67313 2.836565h365.916897z m0 156.01108c5.67313 0 8.509695 2.836565 11.346261 5.67313 2.836565 2.836565 5.67313 8.509695 5.67313 11.346261v365.916897c0 2.836565 0 5.67313-2.836565 5.67313h-5.67313L306.34903 850.969529 141.828255 1015.490305c-2.836565 2.836565-8.509695 5.67313-11.346261 5.67313-5.67313 0-8.509695-2.836565-11.34626-5.67313L8.509695 904.864266c-5.67313-2.836565-8.509695-8.509695-8.509695-11.34626s2.836565-8.509695 5.67313-11.346261L170.193906 717.65097l-119.135734-119.135735c-2.836565-2.836565-2.836565-2.836565 0-5.67313 0-2.836565 2.836565-2.836565 5.67313-2.836565l365.916897-2.836565z m175.867036-156.01108c-5.67313 0-8.509695-2.836565-11.34626-5.67313-2.836565-2.836565-5.67313-8.509695-5.67313-11.346261V51.058172c0-2.836565 0-5.67313 2.836565-5.67313h5.67313L714.814404 170.193906 879.33518 5.67313c2.836565-2.836565 8.509695-5.67313 11.34626-5.67313 5.67313 0 8.509695 2.836565 11.346261 5.67313l110.626039 110.626039c5.67313 2.836565 8.509695 8.509695 8.509695 11.34626 0 5.67313-2.836565 8.509695-5.67313 11.346261L850.969529 303.512465l119.135734 119.135734c2.836565 2.836565 2.836565 2.836565 0 5.673131 0 2.836565-2.836565 2.836565-5.67313 2.836565H598.515235z m0 156.01108c-5.67313 0-8.509695 2.836565-11.34626 5.67313-2.836565 2.836565-5.67313 8.509695-5.67313 11.346261v365.916897c0 2.836565 0 5.67313 2.836565 5.67313h5.67313l121.972299-121.972299 164.520776 164.520776c2.836565 2.836565 8.509695 5.67313 11.34626 5.67313 5.67313 0 8.509695-2.836565 11.346261-5.67313l110.626039-110.626039c2.836565-2.836565 5.67313-8.509695 5.67313-11.34626s-2.836565-8.509695-5.67313-11.346261L850.969529 717.65097l119.135734-119.135735c2.836565-2.836565 2.836565-2.836565 0-5.67313 0-2.836565-2.836565-2.836565-5.67313-2.836565l-365.916898-2.836565z"></path>
+            </svg>
+        </button>
+        <div class="editor chatinput" aria-label="input area" contenteditable="true" ref="editor"></div>
+        <button class="send">发送</button>
+    </div>
+</div><!-- Emoji Mart-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+<script src="{{ url_for('static', path='js/litewebchat_render.min.js') }}"></script>
+<script src="{{ url_for('static', path='js/litewebchat_input.min.js') }}"></script>
+
+
+<script>
+
+    const headicA = "{{ url_for("static", path="images/A.jpg") }}"
+    {#robot#}
+    const headicB = "{{ url_for("static", path="images/O.jpg") }}"
+    {#human#}
+    const htmls = [
+        {
+            messageType: 'tipsSuccess',
+            html: '从我做过的连接成功'
+        },
+        {
+            messageType: 'text',
+            headIcon: headicA,
+            name: 'Bot',
+            position: 'left',
+            html: '这是什么什么鬼？'
+        }, {
+            messageType: 'text',
+            headIcon: headicB,
+            name: 'SuperPaxxs',
+            position: 'right',
+            html: 'LiteChat_Frame（轻聊天气泡框架',
+        },];
+    beforeRenderingHTML(htmls, '.lite-chatbox');
+
+
+    const btns = document.querySelectorAll('.theme-switch');
+    const html = document.documentElement;
+
+    const addEvent = btn => {
+        btn.addEventListener('click', e => {
+            let theme = html.getAttribute("litewebchat-theme");
+            if (theme === 'dark') {
+                html.setAttribute("litewebchat-theme", 'light');
+            } else {
+                html.setAttribute("litewebchat-theme", 'dark');
+            }
+        });
+    };
+    btns.forEach(btn => {
+        addEvent(btn);
+    });
+
+
+    function show_msg(msg, is_sender) {
+
+        const pic = is_sender ? headicB : headicA
+        const name = is_sender ? 'BotMan' : 'Sweet'
+        const position = is_sender ? 'right' : 'left'
+        htmls.push({
+            messageType: 'text',
+            headIcon: pic,
+            name: name,
+            position: position,
+            html: msg
+        })
+
+        beforeRenderingHTML(htmls, '.lite-chatbox');
+
+    }
+
+
+    let ws_api = "{{ws_api}}";
+
+
+    const ws = new WebSocket(ws_api);
+
+
+    document.querySelector('.send').onclick = function () {
+        msg = document.querySelector('.chatinput').innerHTML;
+        document.querySelector('.chatinput').innerHTML = '';
+
+        ws.send(JSON.stringify({msg: msg}))
+
+        show_msg(msg, true);
+    };
+
+    ws.onmessage = function (event) {
+        // 接收到消息
+        lt = JSON.parse(event.data)
+
+        print(lt.msg)
+        show_msg(lt.msg, false);
+    };
+
+
+</script>
+
+</body>
+</html>

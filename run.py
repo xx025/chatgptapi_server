@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from starlette.requests import Request
+from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
 from message_forward import user, server
@@ -19,14 +20,19 @@ app.add_middleware(
 app.include_router(user, prefix=f"/{user_path}")
 app.include_router(server, prefix=f"/{server_path}")
 
-templates = Jinja2Templates(directory='./')
+# mount表示将某个目录下一个完全独立的应用挂载过来，这个不会在API交互文档中显示
+app.mount(path='/static', app=StaticFiles(directory='./chat/static'), name='static')
+# .mount()不要在分路由APIRouter().mount()调用，模板会报错
+
+
+templates = Jinja2Templates(directory='./chat/templates')
 
 
 @app.get("/")
 def index(request: Request):
     ws_api = f"ws://{host}:{port}/{user_path}"
     page_params = {"request": request, "ws_api": ws_api}
-    return templates.TemplateResponse("index2.html", page_params)
+    return templates.TemplateResponse("index.html", page_params)
 
 
 if __name__ == "__main__":
@@ -40,5 +46,5 @@ if __name__ == "__main__":
                 ws_ping_timeout=99999,
                 timeout_keep_alive=99999
                 )
-    #linux 部署
+    # linux 部署
     # #  部署 ：nohup uvicorn run:app --host=0.0.0.0 --port=8010 --ws-ping-interval=99999 --ws-ping-timeout=99999 --timeout-keep-alive=99999 > output.log 2>&1 &
