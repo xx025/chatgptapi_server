@@ -1,4 +1,9 @@
 # browser-chatgptapi
+
+
+
+体验地址：https://xx025.github.io/hhlfx57c50/
+
 ![Snipaste_2023-03-01_22-59-42.png](imgs%2FSnipaste_2023-03-01_22-59-42.png)
 这是一个，ChatGPT3.5 API 服务（即在OpenAI网页使用的模型），它允许连接多个ChatGPT账户协同工作，并构建一个对外的API接口服务。
 
